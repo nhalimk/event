@@ -7,9 +7,9 @@ use Cake\ORM\Entity;
  * Attendance Entity
  *
  * @property int $id
- * @property string|null $fullname
- * @property string|null $staffno
- * @property \Cake\I18n\FrozenTime|null $time_in
+ * @property int|null $event_id
+ * @property int|null $staff_id
+ * @property \Cake\I18n\FrozenTime|null $time
  */
 class Attendance extends Entity
 {
@@ -23,8 +23,8 @@ class Attendance extends Entity
      * @var array
      */
     protected $_accessible = [
-        'fullname' => true,
-        'staffno' => true,
-        'time_in' => true
+        'event_id' => true,
+        'staff_id' => true,
+        'time' => true
     ];
 }

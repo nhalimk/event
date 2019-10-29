@@ -21,9 +21,9 @@
     <fieldset>
         <legend><?= __('Edit Attendance') ?></legend>
         <?php
-            echo $this->Form->control('fullname');
-            echo $this->Form->control('staffno');
-            echo $this->Form->control('time_in');
+            echo $this->Form->control('event_id');
+            echo $this->Form->control('staff_id');
+            echo $this->Form->control('time');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

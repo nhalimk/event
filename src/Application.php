@@ -77,7 +77,7 @@ class Application extends BaseApplication
             // using it's second constructor argument:
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this));
-
+		
         return $middlewareQueue;
     }
 

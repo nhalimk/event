@@ -16,9 +16,9 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fullname') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('staffno') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('time_in') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('event_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('staff_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('time') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -26,9 +26,9 @@
             <?php foreach ($attendances as $attendance): ?>
             <tr>
                 <td><?= $this->Number->format($attendance->id) ?></td>
-                <td><?= h($attendance->fullname) ?></td>
-                <td><?= h($attendance->staffno) ?></td>
-                <td><?= h($attendance->time_in) ?></td>
+                <td><?= $this->Number->format($attendance->event_id) ?></td>
+                <td><?= $this->Number->format($attendance->staff_id) ?></td>
+                <td><?= h($attendance->time) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $attendance->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $attendance->id]) ?>

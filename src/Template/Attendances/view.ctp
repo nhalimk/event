@@ -17,20 +17,20 @@
     <h3><?= h($attendance->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Fullname') ?></th>
-            <td><?= h($attendance->fullname) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Staffno') ?></th>
-            <td><?= h($attendance->staffno) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($attendance->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Time In') ?></th>
-            <td><?= h($attendance->time_in) ?></td>
+            <th scope="row"><?= __('Event Id') ?></th>
+            <td><?= $this->Number->format($attendance->event_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Staff Id') ?></th>
+            <td><?= $this->Number->format($attendance->staff_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Time') ?></th>
+            <td><?= h($attendance->time) ?></td>
         </tr>
     </table>
 </div>

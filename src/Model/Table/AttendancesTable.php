@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Attendances Model
  *
+ * @property &\Cake\ORM\Association\BelongsTo $Events
+ * @property &\Cake\ORM\Association\BelongsTo $Staffs
+ *
  * @method \App\Model\Entity\Attendance get($primaryKey, $options = [])
  * @method \App\Model\Entity\Attendance newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Attendance[] newEntities(array $data, array $options = [])
@@ -33,6 +36,13 @@ class AttendancesTable extends Table
         $this->setTable('attendances');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->belongsTo('Events', [
+            'foreignKey' => 'event_id'
+        ]);
+        $this->belongsTo('Staffs', [
+            'foreignKey' => 'staff_id'
+        ]);
     }
 
     /**
@@ -48,19 +58,24 @@ class AttendancesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('fullname')
-            ->maxLength('fullname', 255)
-            ->allowEmptyString('fullname');
-
-        $validator
-            ->scalar('staffno')
-            ->maxLength('staffno', 255)
-            ->allowEmptyString('staffno');
-
-        $validator
-            ->dateTime('time_in')
-            ->allowEmptyDateTime('time_in');
+            ->dateTime('time')
+            ->allowEmptyDateTime('time');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['event_id'], 'Events'));
+        $rules->add($rules->existsIn(['staff_id'], 'Staffs'));
+
+        return $rules;
     }
 }
