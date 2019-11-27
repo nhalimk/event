@@ -10,6 +10,9 @@ use Cake\ORM\Entity;
  * @property int|null $event_id
  * @property int|null $staff_id
  * @property \Cake\I18n\FrozenTime|null $time
+ *
+ * @property \App\Model\Entity\Event $event
+ * @property \App\Model\Entity\Staff $staff
  */
 class Attendance extends Entity
 {
@@ -25,6 +28,8 @@ class Attendance extends Entity
     protected $_accessible = [
         'event_id' => true,
         'staff_id' => true,
-        'time' => true
+        'time' => true,
+        'event' => true,
+        'staff' => true
     ];
 }

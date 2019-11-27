@@ -8,6 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Attendance'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Events'), ['controller' => 'Events', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Event'), ['controller' => 'Events', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Staffs'), ['controller' => 'Staffs', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Staff'), ['controller' => 'Staffs', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="attendances index large-9 medium-8 columns content">
@@ -26,8 +30,8 @@
             <?php foreach ($attendances as $attendance): ?>
             <tr>
                 <td><?= $this->Number->format($attendance->id) ?></td>
-                <td><?= $this->Number->format($attendance->event_id) ?></td>
-                <td><?= $this->Number->format($attendance->staff_id) ?></td>
+                <td><?= $attendance->has('event') ? $this->Html->link($attendance->event->id, ['controller' => 'Events', 'action' => 'view', $attendance->event->id]) : '' ?></td>
+                <td><?= $attendance->has('staff') ? $this->Html->link($attendance->staff->fullname, ['controller' => 'Staffs', 'action' => 'view', $attendance->staff->id]) : '' ?></td>
                 <td><?= h($attendance->time) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $attendance->id]) ?>

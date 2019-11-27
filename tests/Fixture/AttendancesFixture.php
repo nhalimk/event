@@ -40,7 +40,7 @@ class AttendancesFixture extends TestFixture
                 'id' => 1,
                 'event_id' => 1,
                 'staff_id' => 1,
-                'time' => 1572231616
+                'time' => 1573787132
             ],
         ];
         parent::init();

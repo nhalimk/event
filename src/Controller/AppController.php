@@ -37,6 +37,11 @@ class AppController extends Controller
      *
      * @return void
      */
+    public $helpers = [
+        'DataTables' => [
+            'className' => 'DataTables.DataTables'
+        ]
+    ];
     public function initialize()
     {
         parent::initialize();
@@ -45,6 +50,8 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
+        $this->loadComponent('Csrf');
+        $this->loadComponent('DataTables.DataTables');
 
         /*
          * Enable the following component for recommended CakePHP security settings.

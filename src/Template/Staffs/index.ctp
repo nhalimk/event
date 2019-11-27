@@ -14,7 +14,7 @@
 </nav>
 <div class="staffs index large-9 medium-8 columns content">
     <h3><?= __('Staffs') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" id="table_staff">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -40,6 +40,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+<!--
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -50,4 +51,13 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+-->
 </div>
+
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_staff').DataTable();
+    } );
+</script>
+<?php $this->end(); ?>  

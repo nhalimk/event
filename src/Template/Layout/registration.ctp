@@ -25,12 +25,10 @@
 </head>
 <body>
     <div class="page-header header-filter" style="background-image: url('img/bg7.jpg'); background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="container-fluid clearfix">
+        <div class="container-fluid clearfix">
 
-                <?= $this->Flash->render() ?>
-                <?= $this->fetch('content') ?>
-            </div>
+            <?= $this->Flash->render() ?>
+            <?= $this->fetch('content') ?>
         </div>
     
     </div>

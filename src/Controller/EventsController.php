@@ -23,6 +23,14 @@ class EventsController extends AppController
 
         $this->set(compact('events'));
     }
+    public function listing()
+    {
+//        $events = $this->paginate($this->Events);
+//
+//        $this->set(compact('events'));
+        $this->viewBuilder()->setLayout('registration');
+         $this->set('events', $this->Events->find('all'));
+    }
 
     /**
      * View method

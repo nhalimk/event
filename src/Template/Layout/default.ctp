@@ -28,17 +28,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('font-awesome/css/fontawesome.css') ?>
     <?= $this->Html->css('font-awesome/css/brands.css') ?>
     <?= $this->Html->css('font-awesome/css/solid.css') ?>
+    <?= $this->Html->css('jquery.dataTables.min.css') ?>
+    <?= $this->Html->css('buttons.dataTables.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->Html->script('jquery-3.4.1.min.js'); ?>
-    <?= $this->Html->script('bootstrap.min.js'); ?>
-    <?= $this->Html->script('popper.min.js'); ?>
-    <?= $this->fetch('script') ?>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
@@ -60,5 +58,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     <footer>
     </footer>
+    
+    
+    <?= $this->Html->script('jquery-3.4.1.min.js'); ?>
+<!--    <?= $this->Html->script('jquery-3.3.1.js'); ?>-->
+    <?= $this->Html->script('bootstrap.js'); ?>
+    <?= $this->Html->script('popper.min.js'); ?>
+    <?= $this->Html->script('jquery.dataTables.min.js'); ?>
+    <?= $this->Html->script('dataTables.buttons.min.js'); ?>
+<!--
+    <?= $this->Html->script('buttons.flash.min.js'); ?>
+    <?= $this->Html->script('pdfmake.min.js'); ?>
+    <?= $this->Html->script('jszip.min.js'); ?>
+    <?= $this->Html->script('vfs_fonts.js'); ?>
+    <?= $this->Html->script('buttons.html5.min.js'); ?>
+    <?= $this->Html->script('buttons.print.min.js'); ?>
+-->
+    <?= $this->fetch('script') ?>
 </body>
 </html>

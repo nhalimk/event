@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Attendances Model
  *
- * @property &\Cake\ORM\Association\BelongsTo $Events
- * @property &\Cake\ORM\Association\BelongsTo $Staffs
+ * @property \App\Model\Table\EventsTable&\Cake\ORM\Association\BelongsTo $Events
+ * @property \App\Model\Table\StaffsTable&\Cake\ORM\Association\BelongsTo $Staffs
  *
  * @method \App\Model\Entity\Attendance get($primaryKey, $options = [])
  * @method \App\Model\Entity\Attendance newEntity($data = null, array $options = [])

@@ -19,9 +19,9 @@ class StaffsController extends AppController
      */
     public function index()
     {
-        $staffs = $this->paginate($this->Staffs);
+//        $staffs = $this->set('staffs', $this->Staffs->find('all')); 
 
-        $this->set(compact('staffs'));
+        $this->set('staffs', $this->Staffs->find('all'));
     }
 
     /**

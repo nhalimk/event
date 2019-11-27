@@ -1,8 +1,7 @@
 <?php
 namespace App\Controller;
-use \Cake\ORM\TableRegistry;
-use App\Controller\AppController;
 
+use App\Controller\AppController;
 
 /**
  * Attendances Controller
@@ -20,32 +19,12 @@ class AttendancesController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Events', 'Staffs']
+        ];
         $attendances = $this->paginate($this->Attendances);
 
         $this->set(compact('attendances'));
-    }
-    public function registration()
-    {
-        $this->viewBuilder()->setLayout('registration');
-        $staffs = TableRegistry::get('staffs');
-        $attendancetble = TableRegistry::get('attendances');
-
-        $attendance = $attendancetble->newEntity();
-        if ($this->request->is('post')) {
-//            $attendance = $this->Attendances->patchEntity($attendance, $this->request->getData());
-            
-            $attendance->staff_id = $staffs->findByFullname($_POST['staff_no'])->id;
-            $attendance->event_id = $_POST['event_id'];
-            $attendance->time = Time::now();
-            print_r($attendance->event_id);
-            if ($attendancetble->save($attendance)) {
-                $this->Flash->success(__('The attendance has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The attendance could not be saved. Please, try again.'));
-        }
-        $this->set(compact('attendance'));
     }
 
     /**
@@ -58,7 +37,7 @@ class AttendancesController extends AppController
     public function view($id = null)
     {
         $attendance = $this->Attendances->get($id, [
-            'contain' => []
+            'contain' => ['Events', 'Staffs']
         ]);
 
         $this->set('attendance', $attendance);
@@ -73,7 +52,6 @@ class AttendancesController extends AppController
     {
         $attendance = $this->Attendances->newEntity();
         if ($this->request->is('post')) {
-            
             $attendance = $this->Attendances->patchEntity($attendance, $this->request->getData());
             if ($this->Attendances->save($attendance)) {
                 $this->Flash->success(__('The attendance has been saved.'));
@@ -82,7 +60,26 @@ class AttendancesController extends AppController
             }
             $this->Flash->error(__('The attendance could not be saved. Please, try again.'));
         }
-        $this->set(compact('attendance'));
+        $events = $this->Attendances->Events->find('list', ['limit' => 200]);
+        $staffs = $this->Attendances->Staffs->find('list', ['limit' => 200]);
+        $this->set(compact('attendance', 'events', 'staffs'));
+    }
+    
+    public function registration($id = null)
+    {
+        $attendance = $this->Attendances->newEntity();
+        if ($this->request->is('post')) {
+            $attendance = $this->Attendances->patchEntity($attendance, $this->request->getData());
+            if ($this->Attendances->save($attendance)) {
+                $this->Flash->success(__('The attendance has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The attendance could not be saved. Please, try again.'));
+        }
+        $events = $this->Attendances->Events->find('list', ['limit' => 200]);
+        $staffs = $this->Attendances->Staffs->find('list', ['limit' => 200]);
+        $this->set(compact('attendance', 'events', 'staffs'));
     }
 
     /**
@@ -106,7 +103,9 @@ class AttendancesController extends AppController
             }
             $this->Flash->error(__('The attendance could not be saved. Please, try again.'));
         }
-        $this->set(compact('attendance'));
+        $events = $this->Attendances->Events->find('list', ['limit' => 200]);
+        $staffs = $this->Attendances->Staffs->find('list', ['limit' => 200]);
+        $this->set(compact('attendance', 'events', 'staffs'));
     }
 
     /**

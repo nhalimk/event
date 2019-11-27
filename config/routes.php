@@ -62,23 +62,17 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Attendances', 'action' => 'registration']);
+    $routes->connect('/', ['controller' => 'Events', 'action' => 'listing']);
+    
+    $routes->connect('/listing', ['controller' => 'Events', 'action' => 'listing']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-    Router::connect(
-    '/registration',
-    array(
-        'controller' => 'Attendances',
-        'action' => 'registration',
-        '[method]' => 'GET',
-    )
-    );
-    Router::connect(
-    'registration',
-    array(
+    Router::connect('/registration',array('controller' => 'Attendances','action' => 'registration','[method]' => 'GET'));
+    Router::connect('/attendances/registration/:id',array('controller' => 'Attendances','action' => 'registration','[method]' => ['GET','POST']),['id' => '\d+', 'pass' => ['id']]);
+    Router::connect('registration',array(
         'controller' => 'Attendances',
         'action' => 'registration',
         '[method]' => 'POST',
